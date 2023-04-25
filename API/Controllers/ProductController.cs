@@ -1,7 +1,7 @@
 
 using API.Dtos.Media;
-using API.Dtos.Product;
-using API.Dtos.Review;
+using API.Dtos.Products;
+using API.Dtos.Reviews;
 using API.Models.ServiceResponse;
 
 namespace API.Controllers
@@ -32,13 +32,13 @@ namespace API.Controllers
         }
 
         [HttpGet("[controller]/{id}")]
-        public async Task<ActionResult<ServiceResponse<GetProductDto>>> GetProductById(int id)
+        public async Task<ActionResult<ServiceResponse<GetProductByIdDto>>> GetProductById(int id)
         {
             var response = await _productService.GetProductById(id);
             return Ok(response);
         }
 
-        [HttpPatch("[controller]/{id}")]
+        [HttpPatch("[controller]")]
         public async Task<ActionResult<ServiceResponse<GetProductDto>>> UpdateProduct(UpdateProductDto updateProduct)
         {
             var response = await _productService.UpdateProduct(updateProduct);

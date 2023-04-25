@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Dtos.Reviews;
+using API.Models.Reviews;
 
-namespace API.Dtos.Product
+namespace API.Dtos.Products
 {
-    public class GetProductDto
+    public class GetProductByIdDto
     {
         public int proId { get; set; }
         public string productName { get; set; }
@@ -17,5 +19,6 @@ namespace API.Dtos.Product
         public int cateId { get; set; }
         public string categoryName { get; set; }
         public string location { get; set; }
+        public ICollection<GetReviewDto> reviews { get; set; }
     }
 }

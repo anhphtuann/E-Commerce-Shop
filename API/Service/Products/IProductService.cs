@@ -1,14 +1,14 @@
 using API.Dtos.Media;
-using API.Dtos.Product;
-using API.Dtos.Review;
+using API.Dtos.Products;
+using API.Dtos.Reviews;
 using API.Models.ServiceResponse;
 
-namespace API.Service.Product
+namespace API.Service.Products
 {
     public interface IProductService
     {
         Task<ServiceResponse<List<GetProductDto>>> GetAllProduct();
-        Task<ServiceResponse<GetProductDto>> GetProductById(int id);
+        Task<ServiceResponse<GetProductByIdDto>> GetProductById(int id);
         Task<ServiceResponse<GetProductDto>> AddProduct(AddProductDto newProduct);
         Task<ServiceResponse<GetProductDto>> UpdateProduct(UpdateProductDto updateProduct);
         Task<ServiceResponse<GetReviewDto>> AddReview(AddReviewDto newReview);
@@ -16,6 +16,6 @@ namespace API.Service.Product
         Task<ServiceResponse<GetMediaDto>> UpdateMedia(UpdateMediaDto updateMedia, int id);
         Task<ServiceResponse<GetMediaDto>> AddMedia(AddMediaDto newMedia);
         Task<ServiceResponse<List<GetProductDto>>> GetProductByName(string name);
-        Task<ServiceResponse<List<GetProductDto>>> GetAllProductByCategory(string categoryName);
+        Task<ServiceResponse<List<GetProductByCategoryDto>>> GetAllProductByCategory(string categoryName);
     }
 }

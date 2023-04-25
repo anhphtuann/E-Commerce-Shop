@@ -1,7 +1,7 @@
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
 global using API.Data;
-global using API.Service.Product;
+global using API.Service.Products;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;
 

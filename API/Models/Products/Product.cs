@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using API.Models.Reviews;
 
 namespace API.Models.Products;
 
@@ -18,5 +19,7 @@ public class Product
 
     [ForeignKey("cateId")]
     public virtual Category category { get; set; }
+
+    public virtual ICollection<Review> reviews { get; set; }
 }
 
