@@ -14,7 +14,7 @@ public class Review
     public int proId { get; set; }
     public double rate { get; set; }
     public string comment { get; set; }
-    public string date { get; set; }
+    public DateTime date { get; set; }
     
     [ForeignKey("userId")]
     public User user { get; set; }

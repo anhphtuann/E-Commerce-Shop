@@ -15,6 +15,7 @@ namespace API.Dtos.Products
         public decimal priceUnit { get; set; } = -1;
         public long quantity { get; set; } = -1;
         public int cateId { get; set; } = -1;
+        public int vendorUserId { get; set; } = -1;
 
     }
 }

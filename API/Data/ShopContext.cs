@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Models.Products;
 using API.Models.Users;
 using API.Models.Reviews;
+using API.Models.Carts;
 
 namespace API.Data;
 
@@ -16,14 +17,12 @@ public class ShopContext : DbContext
     }
 
     public DbSet<Product> Products {get; set;}
-
     public DbSet<Category> Categories {get; set;}
-
     public  DbSet<Stock> Stocks {get; set;}
-
     public  DbSet<Review> Reviews {get; set;}
-
     public  DbSet<User> Users {get; set;}
+    public DbSet<Cart> Carts { get; set; }
+    public DbSet<CartProduct> CartProducts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder dbBuilder)
     {
@@ -33,5 +32,8 @@ public class ShopContext : DbContext
     {
         modelBuilder.Entity<Stock>()
             .HasKey(s => new {s.cateId, s.proId});
+        
+        modelBuilder.Entity<CartProduct>()
+            .HasKey(c => new {c.cartId, c.proId});
     } 
 }

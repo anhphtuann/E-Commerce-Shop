@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230426085238_UpdateUser2")]
+    partial class UpdateUser2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,51 +24,6 @@ namespace API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("API.Models.Carts.Cart", b =>
-                {
-                    b.Property<int>("cartId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("cartId"));
-
-                    b.Property<decimal>("totalPrice")
-                        .HasColumnType("money");
-
-                    b.Property<int>("userId")
-                        .HasColumnType("int");
-
-                    b.HasKey("cartId");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("API.Models.Carts.CartProduct", b =>
-                {
-                    b.Property<int>("cartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("proId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("priceUnit")
-                        .HasColumnType("money");
-
-                    b.Property<long>("quantity")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("totalProductPrice")
-                        .HasColumnType("money");
-
-                    b.HasKey("cartId", "proId");
-
-                    b.HasIndex("proId");
-
-                    b.ToTable("CartProducts");
-                });
 
             modelBuilder.Entity("API.Models.Products.Category", b =>
                 {
@@ -219,36 +177,6 @@ namespace API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("API.Models.Carts.Cart", b =>
-                {
-                    b.HasOne("API.Models.Users.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("user");
-                });
-
-            modelBuilder.Entity("API.Models.Carts.CartProduct", b =>
-                {
-                    b.HasOne("API.Models.Carts.Cart", "cart")
-                        .WithMany("products")
-                        .HasForeignKey("cartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Products.Product", "product")
-                        .WithMany()
-                        .HasForeignKey("proId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("cart");
-
-                    b.Navigation("product");
-                });
-
             modelBuilder.Entity("API.Models.Products.Product", b =>
                 {
                     b.HasOne("API.Models.Products.Category", "category")
@@ -296,11 +224,6 @@ namespace API.Migrations
                     b.Navigation("product");
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("API.Models.Carts.Cart", b =>
-                {
-                    b.Navigation("products");
                 });
 
             modelBuilder.Entity("API.Models.Products.Category", b =>

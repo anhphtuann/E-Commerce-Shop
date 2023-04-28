@@ -20,6 +20,9 @@ namespace API.Models.Users
         public string account { get; set; }
         public byte[] passwordHash { get; set; } = new byte[0];
         public byte[] passwordSalt { get; set; } = new byte[0];
+        public string role { get; set; }
+        public string email { get; set; }
+        public string contact { get; set; }
         public ICollection<Review> reviews { get; set; }
     }
 }

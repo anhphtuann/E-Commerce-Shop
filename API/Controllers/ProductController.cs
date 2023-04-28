@@ -3,9 +3,11 @@ using API.Dtos.Media;
 using API.Dtos.Products;
 using API.Dtos.Reviews;
 using API.Models.ServiceResponse;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("v1")]
     public class ProductController : ControllerBase
@@ -24,12 +26,14 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "administrator, vendor")]
         [HttpPost("[controller]")]
         public async Task<ActionResult<ServiceResponse<GetProductDto>>> AddProduct(AddProductDto newProduct)
         {
             var response = await _productService.AddProduct(newProduct);
             return Ok(response);
         }
+
 
         [HttpGet("[controller]/{id}")]
         public async Task<ActionResult<ServiceResponse<GetProductByIdDto>>> GetProductById(int id)
@@ -38,6 +42,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "administrator, vendor")]
         [HttpPatch("[controller]")]
         public async Task<ActionResult<ServiceResponse<GetProductDto>>> UpdateProduct(UpdateProductDto updateProduct)
         {
@@ -45,13 +50,15 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "administrator, consumer")]
         [HttpPost("[controller]/{id}/reviews")]
-        public async Task<ActionResult<ServiceResponse<GetProductDto>>> AddReview(AddReviewDto newReview)
+        public async Task<ActionResult<ServiceResponse<GetProductDto>>> AddReview(int id, AddReviewDto newReview)
         {
-            var response = await _productService.AddReview(newReview);
+            var response = await _productService.AddReview(id, newReview);
             return Ok(response);
         }
 
+        [Authorize(Roles = "administrator, vendor")]
         [HttpDelete("[controller]/{id}")]
         public async Task<ActionResult<ServiceResponse<GetProductDto>>> DeleteProduct(int id)
         {
@@ -59,6 +66,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "administrator, vendor")]
         [HttpPatch("media/{id}")]
         public async Task<ActionResult<ServiceResponse<GetProductDto>>> UpdateMedia(UpdateMediaDto updateMedia, int id)
         {
@@ -66,12 +74,14 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "administrator, vendor")]
         [HttpPost("uploads")]
         public async Task<ActionResult<ServiceResponse<GetProductDto>>> AddMedia(AddMediaDto newMedia)
         {
             var response = await _productService.AddMedia(newMedia);
             return Ok(response);
         }
+
 
         [HttpGet("search")]
         public async Task<ActionResult<ServiceResponse<List<GetProductDto>>>> GetProductByName(string keyword)
@@ -80,6 +90,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        
         [HttpGet("get-all-categories")]
         public async Task<ActionResult<ServiceResponse<List<GetProductDto>>>> GetAllProduct()
         {

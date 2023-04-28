@@ -19,6 +19,8 @@ namespace API.Dtos.Products
         public int cateId { get; set; }
         public string categoryName { get; set; }
         public string location { get; set; }
+        public int vendorUserId { get; set; }
+        public DateTime dateModify { get; set; }
         public ICollection<GetReviewDto> reviews { get; set; }
     }
 }

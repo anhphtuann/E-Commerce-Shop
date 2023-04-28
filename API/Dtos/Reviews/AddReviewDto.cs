@@ -7,6 +7,7 @@ namespace API.Dtos.Reviews
 {
     public class AddReviewDto
     {
-        
+        public double rate { get; set; }
+        public string comment { get; set; }
     }
 }

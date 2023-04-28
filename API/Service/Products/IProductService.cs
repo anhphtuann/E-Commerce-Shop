@@ -11,8 +11,8 @@ namespace API.Service.Products
         Task<ServiceResponse<GetProductByIdDto>> GetProductById(int id);
         Task<ServiceResponse<GetProductDto>> AddProduct(AddProductDto newProduct);
         Task<ServiceResponse<GetProductDto>> UpdateProduct(UpdateProductDto updateProduct);
-        Task<ServiceResponse<GetReviewDto>> AddReview(AddReviewDto newReview);
-        Task<ServiceResponse<GetProductDto>> DeleteProduct(int id);
+        Task<ServiceResponse<GetReviewDto>> AddReview(int id, AddReviewDto newReview);
+        Task<ServiceResponse<List<GetProductDto>>> DeleteProduct(int id);
         Task<ServiceResponse<GetMediaDto>> UpdateMedia(UpdateMediaDto updateMedia, int id);
         Task<ServiceResponse<GetMediaDto>> AddMedia(AddMediaDto newMedia);
         Task<ServiceResponse<List<GetProductDto>>> GetProductByName(string name);
