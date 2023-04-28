@@ -18,7 +18,8 @@ namespace E_Commerce_Shop.Models
         public string Brand {get; set;} = string.Empty;
         public int Rating {get; set;}
         public int CategoryId {get; set;}
-        public Category Category {get; set;}
+        public Category? Category {get; set;}
         public List<Review>? reviews {get; set;}
+        public List<UserProduct>? product{get; set;}
     }
 }

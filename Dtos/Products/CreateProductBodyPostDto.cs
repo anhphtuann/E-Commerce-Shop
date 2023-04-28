@@ -12,10 +12,12 @@ namespace E_Commerce_Shop.Dtos.Products
         public string Brand {get; set;} = string.Empty;
         public string CategoryProduct {get; set;} = string.Empty;
         public string Description {get; set;} = string.Empty;
+        public string Status {get; set;} = string.Empty;
         public int Price {get; set;}
         public double Rating{get; set;}
         public int CountInStock{get; set;}
          public string CateName {get; set;} = string.Empty;
          public string Location {get; set;} = string.Empty;
+         
     }
 }
